@@ -1,3 +1,5 @@
+# Introduction
+
 ## TCP
 
 - Tcp is a protocol to allow end systems to communicate effectively.
@@ -55,7 +57,39 @@ Port helps **address the packet to specific applications** on hosts.
 
   - SQL server uses port 1433
   - Best practice is not to use these ports for any user defined applications, but there is no technical restriction on using them
-  - ![image-20200219200511339](C:\Users\xk\AppData\Roaming\Typora\typora-user-images\image-20200219200511339.png)
 
   
 
+## OSI Model & Layers
+
+There are several models along which computer networks are organized. The two most common ones are the **Open Systems Interconnection (OSI)** model and the **Transmission Control Protocol/Internet Protocol (TCP/IP)** model.
+
+The model splits up a communication system into **7 abstract layers**, stacked upon each other.
+
+1. Application
+2. Presenation
+3. Session
+4. Transport
+5. Network
+6. Data Link
+7. Physical
+
+
+
+## TCP/IP Model
+
+The **Internet Protocol (IP)** and the **Transmission Control Protocol (TCP)**.
+
+5 Layers:
+
+1. Application
+2. Transport
+3. Network
+4. Data Link
+5. Physical
+
+
+
+# Application Layer
+
+### 
