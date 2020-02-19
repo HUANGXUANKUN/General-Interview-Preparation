@@ -92,4 +92,82 @@ The **Internet Protocol (IP)** and the **Transmission Control Protocol (TCP)**.
 
 # Application Layer
 
-### 
+The main jobs of the application layer is to enable **end users** to access the Internet via a number of applications.
+
+This involves:
+
+- **Writing data off to the network** in a format that is compliant with the protocol in use.
+- **Reading data** from the end user
+- **Providing useful applications** to end users
+- Some application also ensure data from the end-user is in the correct format
+- Some applications provide error handling and recovery
+
+
+
+## Program vs Process
+
+- A **program** is simply an executable file(application).
+- A **process** is any currently running instance of a program. A program can have several copies of it running at once.
+- A **thread** is lightweight process. One process can have multiple running threads. The difference between threads and processes is that threads do lightweight singular jobs. 
+
+
+
+## Sockets
+
+Processes on different machines send messages to each other through the computer network. The interface between a process (a running instance of application) and the computer network is called a **socket**. 
+
+
+
+## Addressing
+
+Messages have to be addressed to a certain application on certain end system. 
+
+Via addressing constructs like IP addresses and ports. 
+
+
+
+## Ports
+
+Since every end system may have number of applications running, ports are used to address the packet to specific applications. 
+
+
+
+## **Ephemeral Ports**
+
+It is used for several instances(processes) of an application are running at once.
+
+Different port numbers are dynamically generated for each instance of an application. The port is freed once the application is done using it.
+
+Furthermore, server processes need to have well defined and fixed port numbers so that clients can connect to them in a systematic and predictable way. However, clients don't need to have reserved ports. They can use ephemeral ports. Servers can also use ephemeral ports in addition to the reserved ones. For instance, a client makes the initial connection to the server on a well-known port and the rest of the communication is carried out by connecting to an ephemeral port on the server.
+
+
+
+# HTTP 
+
+## The basics
+
+The Internet was an obscure set of methods for file transfer and email used by academics and researchers. The World Wide Web was invented to allow the European research organization CERN to present documents linked by hypertexts. All of that changed though when it caught the public’s eye and popularized the Internet. The web was different from other services such as cable television, because it served content based on demand. People could watch what they wanted. **HTTP** or **HyperText Transfer Protocol** is the protocol at the core of the web.
+
+Objects:
+
+- Web pages are objects that consist of other objects.
+- An object is simply a file like an HTML file, PNG file, MP3 file, etc.
+- Each object has a URL
+- The base object of a web page if often an HTML file that has references to other objects by making request for them via their URL.
+
+### URL
+
+A Universal Resource Locator (URL), is used to locate files that exist on servers. URLs consist of the following parts:
+
+- **Protocol** in use
+- The **hostname** of the server
+- The **location of the file**
+- **Arguments** to the file 
+
+### HTTP Requires Lower Layer Reliability
+
+- Application layer protocols rely on underlying transport layer protocols called UDP (User Datagram Protocol) and TCP (Transmission Control Protocol).
+- **TCP ensures that messages are always delivered.** Messages get delivered in the order that they are sent.
+- **UDP does not ensure that messages get delivered**.
+- 
+
