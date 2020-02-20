@@ -996,3 +996,49 @@ where S is the scaling factor (0≤S≤14) negotiated during connection establis
 The client adds its proposed scaling factor as a TCP option in the SYN segment. If the server supports scaling windows, it sends the scaling factor in the *SYN+ACK* segment when advertising its own receive window. The local and remote scaling factors are included in the TCB. If the server does not support scaling windows, it ignores the received option and no scaling is applied. So scaling only applies when both parties support it.
 
 Note that the protection mechanism of not maintaining state from the *SYN* packet via *SYN* cookies has the disadvantage that **the server wouldn’t remember the proposed scaling factor**.
+
+
+
+## TCP Congestion Control
+
+### **Slow Start**
+
+The objective of TCP slow-start is to quickly reach an acceptable value for the congestion window.
+
+During slow-start:
+
+1. The congestion window is **doubled every round-trip time**.
+2. The slow-start algorithm uses an additional variable in the TCB to maintain the **slow-start threshold**
+   - The slow-start threshold is an estimation of the last value of the congestion window that did *not* cause congestion.
+   - It is initialized at the sending window and is updated after each congestion event.
+
+
+
+The TCP congestion control scheme distinguishes between two types of congestion:
+
+1. **Severe Congestion**
+2. **Mild Congestion**
+
+### Severe Congestion [#](https://www.educative.io/courses/grokking-computer-networking/7DV98Mnpzg1#severe-congestion)
+
+TCP considers that the network is severely congested when its retransmission timer expires. The following process is followed accordingly:
+
+1. The sender performs slow-start until the first segments are lost and the retransmission timer expires.
+2. At this time, TCP retransmits the first segment and the slow start threshold is set to half of the current congestion window. Then the congestion window is reset at one segment.
+3. The lost segments are retransmitted as the sender again performs slow-start until the congestion window reaches the slow start threshold.
+4. It then switches to congestion avoidance and the congestion window increases linearly until segments are lost and the retransmission timer expires.
+
+### Mild Congestion [#](https://www.educative.io/courses/grokking-computer-networking/7DV98Mnpzg1#mild-congestion)
+
+TCP considers that the network is lightly congested if it receives three duplicate acknowledgments.
+
+1. The sender begins with a slow-start
+2. If 3 duplicate ACKs arrive, the sender performs a **fast retransmit** (retransmits without waiting for the retransmission timer to expire).
+   - Have a look at the following slides to see when 3 duplicate acknowledgments could arrive and when a fast retransmit happens.
+3. If the fast retransmit is successful, this implies that only one segment has been lost.
+   - In this case, TCP performs multiplicative decrease and the congestion window is divided by 22.
+   - The slow-start threshold is set to the new value of the congestion window.
+4. The sender immediately enters congestion avoidance as this was mild congestion.
+
+
+
